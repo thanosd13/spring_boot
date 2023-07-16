@@ -4,10 +4,10 @@
  */
 package com.ouzerakias.app.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+
+
 
 /**
  *
@@ -18,11 +18,11 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class UserDao {
 	
-	
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
-	
+    private long id;
+
 	@Column(name = "username")
 	private String username;
 	
@@ -32,14 +32,6 @@ public class UserDao {
 	
 	@Column(name = "password")
     private String password;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
