@@ -6,11 +6,10 @@ package com.ouzerakias.app.controller;
 
 import com.ouzerakias.app.entity.UserDao;
 import com.ouzerakias.app.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -31,10 +30,11 @@ public class UserController {
     }
 	
 	
-	@RequestMapping(value ="/insert", method = POST)
-    public UserDao insert(@RequestBody UserDao user) {
-		return userService.addUser(user);
+	@RequestMapping(value ="/findAll", method = GET)
+    public List<UserDao> findAll() {
+        return userService.findAllService();
     }
+	
 	
 	
 }

@@ -6,32 +6,39 @@ package com.ouzerakias.app.entity;
 
 import javax.persistence.*;
 
-
-
-
 /**
  *
  * @author adimopo
  */
-
 @Entity
 @Table(name = "users")
 public class UserDao {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
 
-	@Column(name = "username")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sID")
+	private long id;
+
+	@Column(name = "Username")
 	private String username;
-	
-	@Column(name = "email")
-    private String email;
 
-	
-	@Column(name = "password")
-    private String password;
+	@Column(name = "Email")
+	private String email;
+
+	@Column(name = "Password")
+	private String password;
+
+	@Column(name = "Register_date")
+	private String registerDate;
+
+	@Column(name = "Fname")
+	private String fName;
+
+	@Column(name = "Lname")
+	private String lName;
+
+	@Column(name = "Mobile")
+	private String mobile;
 
 	public String getUsername() {
 		return username;
@@ -48,7 +55,6 @@ public class UserDao {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 
 	public String getPassword() {
 		return password;
@@ -56,6 +62,48 @@ public class UserDao {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
+	}
+
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 	
+
 }

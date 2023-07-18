@@ -6,10 +6,12 @@ package com.ouzerakias.app.controller;
 
 
 import com.ouzerakias.app.config.JwtTokenUtil;
+import com.ouzerakias.app.entity.UserDao;
 import com.ouzerakias.app.model.JwtRequest;
 import com.ouzerakias.app.model.JwtResponse;
-import com.ouzerakias.app.model.UserDto;
 import com.ouzerakias.app.service.JwtUserDetailsService;
+import com.ouzerakias.app.service.UserService;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,9 @@ public class JwtAuthenticationController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -45,12 +50,16 @@ public class JwtAuthenticationController {
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok(new JwtResponse(token));
+		
+		List<UserDao> users = userService.findByUsername(authenticationRequest.getUsername());
+		UserDao user = users != null && !users.isEmpty() ? users.get(0) : null;
+		
+		
+		return ResponseEntity.ok(new JwtResponse(token, user));
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
+	public ResponseEntity<?> saveUser(@RequestBody UserDao user) throws Exception {
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 
@@ -63,4 +72,6 @@ public class JwtAuthenticationController {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 	}
+	
+	
 }
