@@ -4,6 +4,7 @@
  */
 package com.ouzerakias.app.entity;
 
+import java.math.BigInteger;
 import javax.persistence.*;
 
 /**
@@ -38,7 +39,7 @@ public class UserDao {
 	private String lName;
 
 	@Column(name = "Mobile")
-	private String mobile;
+	private BigInteger mobile;
 
 	public String getUsername() {
 		return username;
@@ -97,11 +98,11 @@ public class UserDao {
 		this.lName = lName;
 	}
 
-	public String getMobile() {
+	public BigInteger getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(String mobile) {
+	public void setMobile(BigInteger mobile) {
 		this.mobile = mobile;
 	}
 	
