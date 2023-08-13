@@ -33,7 +33,7 @@ public class UserRepository {
 		UserDao userExists = users.isEmpty() ? null : users.get(0);
 
         if (userExists == null) {
-            String sql = "INSERT INTO Users (Username, Password, Email, Register_date, Fname, Lname, Mobile) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (Username, Password, Email, Register_date, Fname, Lname, Mobile, reset_pass, validation_password, validated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try {
                 Query query = entityManager.createNativeQuery(sql);
                 query.setParameter(1, user.getUsername());
@@ -43,6 +43,9 @@ public class UserRepository {
                 query.setParameter(5, user.getfName());
                 query.setParameter(6, user.getlName());
                 query.setParameter(7, user.getMobile());
+				query.setParameter(8, null);
+				query.setParameter(9, user.getValidationPassword());
+				query.setParameter(10, 0);
                 query.executeUpdate();
 
                 return new ResponseEntity<>("User inserted", HttpStatus.OK);
@@ -56,7 +59,7 @@ public class UserRepository {
     }
 
 	public List<UserDao> findUser(String username) {
-		String sql = "SELECT * FROM Users WHERE Username=?";
+		String sql = "SELECT * FROM users WHERE Username=?";
 		Query query = entityManager.createNativeQuery(sql, UserDao.class);
 		query.setParameter(1, username);
 		try {
@@ -68,7 +71,7 @@ public class UserRepository {
 	}
 	
 	public List<UserDao> findAllUsers() {
-		String sql = "SELECT * FROM Users";
+		String sql = "SELECT * FROM users";
 		Query query = entityManager.createNativeQuery(sql, UserDao.class);
 		try {
 			return (List<UserDao>) query.getResultList();

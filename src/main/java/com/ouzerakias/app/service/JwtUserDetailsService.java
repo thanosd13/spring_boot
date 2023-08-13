@@ -4,10 +4,12 @@
  */
 package com.ouzerakias.app.service;
 
+import com.ouzerakias.app.common.UtilityClass;
 import com.ouzerakias.app.entity.UserDao;
 import com.ouzerakias.app.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,9 @@ public class JwtUserDetailsService implements UserDetailsService{
 
 	@Autowired
 	private UserRepository userDao;
+	
+	@Autowired
+	private UtilityClass utilityClass;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
@@ -39,8 +44,11 @@ public class JwtUserDetailsService implements UserDetailsService{
 	}
 	
 	public ResponseEntity<String> save(UserDao user) {
+		String token = RandomString.make(30);
 		try {
 			user.setPassword(bcryptEncoder.encode(user.getPassword()));
+			user.setValidationPassword(token);
+			utilityClass.sendEmail(user.getEmail(), token);
 			return userDao.addUser(user);
 		} catch (Exception e) {
 			System.err.println("something bad happened!");

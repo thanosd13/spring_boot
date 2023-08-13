@@ -18,7 +18,7 @@ public class UserDao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sID")
-	private long id;
+	private Long id;
 
 	@Column(name = "Username")
 	private String username;
@@ -40,6 +40,16 @@ public class UserDao {
 
 	@Column(name = "Mobile")
 	private BigInteger mobile;
+	
+	@Column(name = "reset_pass")
+    private String resetPass;
+	
+	@Column(name = "validation_password")
+    private String validationPassword;
+		
+		
+	@Column(name = "validated")
+    private Integer validated;
 
 	public String getUsername() {
 		return username;
@@ -65,11 +75,11 @@ public class UserDao {
 		this.password = password;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -105,6 +115,29 @@ public class UserDao {
 	public void setMobile(BigInteger mobile) {
 		this.mobile = mobile;
 	}
-	
 
+	public String getResetPass() {
+		return resetPass;
+	}
+
+	public void setResetPass(String resetPass) {
+		this.resetPass = resetPass;
+	}
+
+	public String getValidationPassword() {
+		return validationPassword;
+	}
+
+	public void setValidationPassword(String validationPassword) {
+		this.validationPassword = validationPassword;
+	}
+
+	public Integer getValidated() {
+		return validated;
+	}
+
+	public void setValidated(Integer validated) {
+		this.validated = validated;
+	}
+	
 }
