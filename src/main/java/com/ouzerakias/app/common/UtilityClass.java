@@ -28,7 +28,7 @@ public class UtilityClass {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message);
 			
-			String link = "http://49.13.24.108:8000/token/"+token;
+			String link = "http://49.13.24.108/token/"+token;
 
 			helper.setFrom("dimopthan@gmail.com", "Ouzerakias Support");
 			helper.setTo(recipientEmail);

@@ -56,7 +56,7 @@ public class ForgotPasswordController {
 
 		try {
 			userService.updateResetPasswordToken(token, email);
-			String resetPasswordLink = "http://49.13.24.108:8000/create_new_pass/" + token;
+			String resetPasswordLink = "http://49.13.24.108/create_new_pass/" + token;
 			sendEmail(email, resetPasswordLink);
 
 		} catch (UsernameNotFoundException ex) {
