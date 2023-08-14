@@ -45,7 +45,7 @@ public class UserRepository {
                 query.setParameter(7, user.getMobile());
 				query.setParameter(8, null);
 				query.setParameter(9, user.getValidationPassword());
-				query.setParameter(10, 1);
+				query.setParameter(10, 0);
                 query.executeUpdate();
 
                 return new ResponseEntity<>("User inserted", HttpStatus.OK);

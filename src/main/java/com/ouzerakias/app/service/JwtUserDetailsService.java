@@ -48,7 +48,7 @@ public class JwtUserDetailsService implements UserDetailsService{
 		try {
 			user.setPassword(bcryptEncoder.encode(user.getPassword()));
 			user.setValidationPassword(token);
-//			utilityClass.sendEmail(user.getEmail(), token);
+			utilityClass.sendEmail(user.getEmail(), token);
 			return userDao.addUser(user);
 		} catch (Exception e) {
 			System.err.println("something bad happened!");
