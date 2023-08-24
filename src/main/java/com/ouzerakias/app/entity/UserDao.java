@@ -46,10 +46,12 @@ public class UserDao {
 	
 	@Column(name = "validation_password")
     private String validationPassword;
-		
-		
+				
 	@Column(name = "validated")
     private Integer validated;
+	
+	@Column(name = "admin")
+    private Integer admin;
 
 	public String getUsername() {
 		return username;
@@ -138,6 +140,14 @@ public class UserDao {
 
 	public void setValidated(Integer validated) {
 		this.validated = validated;
+	}
+
+	public Integer getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Integer admin) {
+		this.admin = admin;
 	}
 	
 }

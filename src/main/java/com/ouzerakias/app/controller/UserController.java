@@ -54,7 +54,7 @@ public class UserController {
 	public ResponseEntity<?> findByToken(@Param(value = "token") String token) {
 		try {
 			UserDao user = userService.getByValidationPassword(token);
-			if (user == null) {
+			if (user == null) {	
 				throw new Exception("User not found for provided token.");
 			}
 			userService.confirmUser(user);

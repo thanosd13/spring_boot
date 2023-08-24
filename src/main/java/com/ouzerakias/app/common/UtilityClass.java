@@ -5,6 +5,7 @@
 package com.ouzerakias.app.common;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,16 @@ public class UtilityClass {
 		} catch (MessagingException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String convertToBase64 (byte [] image){
+		byte[] imageData = image;
+
+        // Convert byte array to Base64 encoded string
+        String base64Encoded = Base64.getEncoder().encodeToString(imageData);
+
+        System.out.println(base64Encoded);
+		
+		return base64Encoded;
 	}
 }

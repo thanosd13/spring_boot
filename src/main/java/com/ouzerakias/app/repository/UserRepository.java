@@ -33,7 +33,7 @@ public class UserRepository {
 		UserDao userExists = users.isEmpty() ? null : users.get(0);
 
         if (userExists == null) {
-            String sql = "INSERT INTO users (Username, Password, Email, Register_date, Fname, Lname, Mobile, reset_pass, validation_password, validated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (Username, Password, Email, Register_date, Fname, Lname, Mobile, reset_pass, validation_password, validated, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try {
                 Query query = entityManager.createNativeQuery(sql);
                 query.setParameter(1, user.getUsername());
@@ -46,6 +46,7 @@ public class UserRepository {
 				query.setParameter(8, null);
 				query.setParameter(9, user.getValidationPassword());
 				query.setParameter(10, 0);
+				query.setParameter(11, 0);
                 query.executeUpdate();
 
                 return new ResponseEntity<>("User inserted", HttpStatus.OK);
